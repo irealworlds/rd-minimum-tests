@@ -104,7 +104,7 @@ const uniquelyCoveredFaults = Object.entries(determiningTests)
 console.debug("Faults that are only covered by one test", uniquelyCoveredFaults);
 
 const faultsByTest = Object.entries(determiningTests)
-    .reduce((accumulator, [faultLabel, tests]) => {
+    .reduce((accumulator: { [testLabel: string]: string[] }, [faultLabel, tests]) => {
         for (const testLabel of tests) {
             if (!(testLabel in accumulator)) {
                 accumulator[testLabel] = [];
@@ -114,7 +114,7 @@ const faultsByTest = Object.entries(determiningTests)
         }
         return accumulator;
     }, {});
-const testsByImportance = Object.entries(faultsByTest).sort(([testA, faultsA], [testZ, faultsZ]) => {
+const testsByImportance = Object.entries(faultsByTest).sort(([, faultsA], [, faultsZ]) => {
     const uniquelyCoveredFaultsSet = new Set(uniquelyCoveredFaults);
 
     // Check if testA or testZ covers uniquely covered faults
@@ -128,7 +128,7 @@ const testsByImportance = Object.entries(faultsByTest).sort(([testA, faultsA], [
     } else if (testACoversUniquely && testZCoversUniquely) {
         return 0; // Both tests cover uniquely, maintain their order
     } else {
-        return faultsZ - faultsA; // Sort by the number of faults (descending order)
+        return faultsZ.length - faultsA.length; // Sort by the number of faults (descending order)
     }
 });
 

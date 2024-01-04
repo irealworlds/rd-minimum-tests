@@ -14,6 +14,6 @@ export class AndGate implements IGate {
     compute(inputs: Partial<{ [label in TCircuitElement]: TCircuitOutputValue }>): TCircuitOutputValue {
         return this.inputLabels.map(label => inputs[label]).reduce((accumulator, value) => {
             return accumulator && value;
-        }, 1);
+        }, 1) as TCircuitOutputValue;
     }
 }

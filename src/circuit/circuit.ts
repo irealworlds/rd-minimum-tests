@@ -2,7 +2,6 @@ import {TCircuitAlgorithm} from "./types/circuit-algorithm.type";
 import {NandGate} from "./models/gates/nand.gate";
 import { CircuitConfiguration } from "./models/circuit-configuration.model";
 import { CascadeFaultsConfiguration } from "./models/cascade-faults-configuration.model";
-import {NotGate} from "./models/gates/not.gate";
 import {IdentityGate} from "./models/gates/identity.gate.ts";
 
 //export const circuitConfiguration = new CircuitConfiguration(
